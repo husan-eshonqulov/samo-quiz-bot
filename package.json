@@ -28,5 +28,8 @@
   },
   "lint-staged": {
     "src/**/*.{js,ts}": "npm run lint"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }
