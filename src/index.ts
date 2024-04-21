@@ -1,6 +1,6 @@
 import bot from './bot';
 
-const bootstrap = async () => {
+const bootstrap = () => {
   bot.start({
     onStart: () => console.log('Bot has been successfully started...')
   });
