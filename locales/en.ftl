@@ -1,0 +1,1 @@
+start-command = Welcome to the bot!
