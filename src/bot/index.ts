@@ -1,10 +1,11 @@
 import { Bot } from 'grammy';
 
 import config from '../config';
+import MyContext from '../types/context';
 import commands from './commands';
 import { regCommands } from '../utils';
 
-const bot = new Bot(config.botToken!);
+const bot = new Bot<MyContext>(config.botToken!);
 
 regCommands(commands, bot);
 
