@@ -1,8 +1,11 @@
 import bot from './bot';
+import { logger } from './utils';
 
 const bootstrap = () => {
   bot.start({
-    onStart: () => console.log('Bot has been successfully started...')
+    onStart: () => {
+      logger.info(`https://t.me/${bot.botInfo.username} has been started...`);
+    }
   });
 };
 
