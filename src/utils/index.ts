@@ -6,9 +6,9 @@ import logger from './logger';
 export { logger };
 
 export const regCommands = (commands: Commands, bot: MyBot) => {
-  for (const name in commands) {
-    bot.command(commands[name].command, commands[name].method);
-  }
+  commands.forEach((command) => {
+    bot.command(command.command, command.method);
+  });
 };
 
 export const regMiddlewares = (middlewares: MyMiddleware[], bot: MyBot) => {
