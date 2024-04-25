@@ -8,6 +8,8 @@ import { regMiddlewares, regCommands } from '../utils';
 
 const bot = new Bot<MyContext>(config.botToken!);
 
+bot.api.setMyCommands(commands);
+
 regMiddlewares(middlewares, bot);
 regCommands(commands, bot);
 
