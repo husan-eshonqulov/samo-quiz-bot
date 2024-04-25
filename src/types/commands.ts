@@ -2,8 +2,9 @@ import Command from './command';
 
 type Commands = {
   [name: string]: {
-    title: string;
-    command: Command;
+    command: string;
+    description: string;
+    method: Command;
   };
 };
 

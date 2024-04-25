@@ -2,8 +2,9 @@ import start from './start';
 
 const commands = {
   start: {
-    title: 'start',
-    command: start
+    command: 'start',
+    description: 'start command',
+    method: start
   }
 };
 

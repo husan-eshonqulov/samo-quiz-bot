@@ -7,7 +7,7 @@ export { logger };
 
 export const regCommands = (commands: Commands, bot: MyBot) => {
   for (const name in commands) {
-    bot.command(commands[name].title, commands[name].command);
+    bot.command(commands[name].command, commands[name].method);
   }
 };
 
