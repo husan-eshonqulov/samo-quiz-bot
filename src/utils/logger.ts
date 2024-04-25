@@ -1,6 +1,5 @@
 import winston from 'winston';
 import { Logger } from 'winston';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import DailyRotateFile from 'winston-daily-rotate-file';
 
 const { combine, timestamp, printf, colorize, align, errors, json } =
