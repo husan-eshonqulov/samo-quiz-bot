@@ -55,11 +55,11 @@ if (process.env.NODE_ENV === 'production') {
       errors({ stack: true }),
       timestamp({ format: 'YYYY-MM-DD hh:mm:ss.SSS' }),
       align(),
+      colorize({ all: true }),
       printf(
         (info) =>
           `${info.timestamp}  ${info.level}: ${info.stack || info.message}`
-      ),
-      colorize({ all: true })
+      )
     ),
     transports: [new winston.transports.Console()]
   });
