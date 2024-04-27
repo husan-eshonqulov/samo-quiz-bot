@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 import MyBot from '../types/bot';
 import Commands from '../types/commands';
 import MyMiddleware from '../types/middleware';
@@ -15,4 +17,8 @@ export const regMiddlewares = (middlewares: MyMiddleware[], bot: MyBot) => {
   middlewares.forEach((middleware) => {
     bot.use(middleware);
   });
+};
+
+export const connectDB = (uri: string) => {
+  return mongoose.connect(uri);
 };
