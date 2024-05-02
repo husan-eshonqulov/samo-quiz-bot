@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, ValidatorProps } from 'mongoose';
 
 const channelSchema = new Schema(
   {
@@ -12,8 +12,13 @@ const channelSchema = new Schema(
       required: true
     },
     type: {
-      type: 'channel',
-      required: true
+      type: String,
+      required: true,
+      validate: {
+        validator: (value: string) => value === 'channel',
+        message: (props: ValidatorProps) =>
+          `${props.value} is not equal to "channel"`
+      }
     }
   },
   { timestamps: true }
