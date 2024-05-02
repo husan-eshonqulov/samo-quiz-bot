@@ -1,8 +1,5 @@
-import { Context, SessionFlavor } from 'grammy';
-import { I18nFlavor } from '@grammyjs/i18n';
+import { Context } from 'grammy';
 
-import SessionData from './session';
-
-type MyContext = Context & SessionFlavor<SessionData> & I18nFlavor;
+type MyContext = Context;
 
 export default MyContext;
