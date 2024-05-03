@@ -25,7 +25,14 @@ const quizSchema = new Schema(
       }
     }
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    statics: {
+      async getRandQuizzes() {
+        return this.aggregate([{ $sample: { size: 2 } }]);
+      }
+    }
+  }
 );
 
 export default quizSchema;
