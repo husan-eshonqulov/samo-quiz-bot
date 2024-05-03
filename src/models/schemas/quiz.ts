@@ -28,8 +28,11 @@ const quizSchema = new Schema(
   {
     timestamps: true,
     statics: {
-      async getRandQuizzes() {
-        return this.aggregate([{ $sample: { size: 2 } }]);
+      async getRandQuizzes(size: number) {
+        const count = await this.countDocuments();
+        return this.aggregate([
+          { $sample: { size: Math.min(Math.abs(size), count) } }
+        ]);
       }
     }
   }
