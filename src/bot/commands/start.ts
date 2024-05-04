@@ -1,6 +1,9 @@
+import cron from 'node-cron';
+
 import MyContext from '../../types/context';
 import Channel from '../../models/channel';
-import { logger } from '../../utils';
+import Quiz from '../../models/quiz';
+import { logger, sendQuiz } from '../../utils';
 
 const start = async (ctx: MyContext) => {
   const update = ctx.update;
@@ -18,6 +21,11 @@ const start = async (ctx: MyContext) => {
       await newChannel.save();
       logger.info(`"${newChannel.title}" channel has been added...`);
     }
+
+    cron.schedule('0 10 * * *', async () => {
+      const quizzes = await Quiz.getRandQuizzes(3);
+      quizzes.forEach(async (quiz) => sendQuiz(ctx, quiz));
+    });
   }
 
   await ctx.reply('Hi!');
