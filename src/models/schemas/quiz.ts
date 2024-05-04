@@ -25,7 +25,17 @@ const quizSchema = new Schema(
       }
     }
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    statics: {
+      async getRandQuizzes(size: number) {
+        const count = await this.countDocuments();
+        return this.aggregate([
+          { $sample: { size: Math.min(Math.abs(size), count) } }
+        ]);
+      }
+    }
+  }
 );
 
 export default quizSchema;
