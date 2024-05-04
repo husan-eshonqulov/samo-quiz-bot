@@ -1,41 +1,38 @@
-import winston from 'winston';
-import { Logger } from 'winston';
+import winston, { Logger } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 
 const { combine, timestamp, printf, colorize, align, errors, json } =
   winston.format;
 
-const combinedTransport = new DailyRotateFile({
-  filename: 'combined-%DATE%.log',
-  dirname: 'logs',
+const commonTransport = {
   datePattern: 'YYYY-MM-DD',
   maxSize: '20m',
   maxFiles: '14d'
+};
+
+const combinedTransport = new DailyRotateFile({
+  ...commonTransport,
+  filename: 'combined-%DATE%.log',
+  dirname: 'logs'
 });
 
 const errorTransport = new DailyRotateFile({
+  ...commonTransport,
   level: 'error',
   filename: 'error-%DATE%.log',
-  dirname: 'logs/errors',
-  datePattern: 'YYYY-MM-DD',
-  maxSize: '20m',
-  maxFiles: '14d'
+  dirname: 'logs/errors'
 });
 
 const exceptionTransport = new DailyRotateFile({
+  ...commonTransport,
   filename: 'exception-%DATE%.log',
-  dirname: 'logs/exceptions',
-  datePattern: 'YYYY-MM-DD',
-  maxSize: '20m',
-  maxFiles: '14d'
+  dirname: 'logs/exceptions'
 });
 
 const rejectionTransport = new DailyRotateFile({
+  ...commonTransport,
   filename: 'rejection-%DATE%.log',
-  dirname: 'logs/rejections',
-  datePattern: 'YYYY-MM-DD',
-  maxSize: '20m',
-  maxFiles: '14d'
+  dirname: 'logs/rejections'
 });
 
 let logger: Logger;
@@ -58,7 +55,7 @@ if (process.env.NODE_ENV === 'production') {
       colorize({ all: true }),
       printf(
         (info) =>
-          `${info.timestamp}  ${info.level}: ${info.stack || info.message}`
+          `${info.timestamp} ${info.level}: ${info.stack || info.message}`
       )
     ),
     transports: [new winston.transports.Console()]

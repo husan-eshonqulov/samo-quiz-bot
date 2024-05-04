@@ -1,16 +1,14 @@
 import { Bot } from 'grammy';
 
-import config from '../config';
 import MyContext from '../types/context';
+import config from '../config';
 import commands from './commands';
 import { regCommands } from '../utils';
 
 const bot = new Bot<MyContext>(config.botToken!);
 
-bot.api.setMyCommands(commands);
+regCommands(bot, commands);
 
-regCommands(commands, bot);
-
-bot.on('message:text', (ctx) => ctx.reply(ctx.message.text));
+bot.on('message:text', async (ctx) => ctx.reply(ctx.message.text));
 
 export default bot;

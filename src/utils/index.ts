@@ -1,20 +1,20 @@
 import mongoose from 'mongoose';
 
 import MyBot from '../types/bot';
-import Commands from '../types/commands';
-import logger from './logger';
-import MyQuiz from '../types/quiz';
 import MyContext from '../types/context';
+import MyQuiz from '../types/quiz';
+import Commands from '../types/command';
+import logger from './logger';
 
 export { logger };
 
-export const regCommands = (commands: Commands, bot: MyBot) => {
+export const regCommands = (bot: MyBot, commands: Commands) => {
   commands.forEach((command) => {
     bot.command(command.command, command.method);
   });
 };
 
-export const connectDB = (uri: string) => {
+export const connectDB = async (uri: string) => {
   return mongoose.connect(uri);
 };
 
@@ -23,7 +23,8 @@ export const sendQuiz = async (ctx: MyContext, quiz: MyQuiz) => {
     const chatId = ctx.update.channel_post.chat.id;
     ctx.api.sendPoll(chatId, quiz.question, quiz.options, {
       type: 'quiz',
-      correct_option_id: quiz.answer
+      correct_option_id: quiz.answer,
+      explanation: quiz.explanation
     });
   }
 };

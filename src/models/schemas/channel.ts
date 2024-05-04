@@ -15,9 +15,8 @@ const channelSchema = new Schema(
       type: String,
       required: true,
       validate: {
-        validator: (value: string) => value === 'channel',
-        message: (props: ValidatorProps) =>
-          `${props.value} is not equal to "channel"`
+        validator: (type: string) => type === 'channel',
+        message: (props: ValidatorProps) => `${props.value} should be "channel"`
       }
     }
   },

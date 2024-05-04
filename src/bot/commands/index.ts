@@ -1,4 +1,4 @@
-import Commands from '../../types/commands';
+import Commands from '../../types/command';
 import start from './start';
 import test from './test';
 
