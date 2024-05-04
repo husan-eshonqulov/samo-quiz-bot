@@ -1,7 +1,7 @@
 type MyQuiz = {
   question: string;
   options: string[];
-  anwser: number;
+  answer: number;
 };
 
 export default MyQuiz;
