@@ -9,7 +9,7 @@
     "start": "NODE_ENV=production node dist/index.js",
     "start:dev": "NODE_ENV=development nodemon src/index.ts",
     "lint": "eslint --fix src/**/*.{js,ts}",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "keywords": [],
   "author": "",
